@@ -1,16 +1,15 @@
 from flask import Flask , request, jsonify
-from flask_sqlalchemy import SQLAlchemy
 from openai import OpenAI
-from db.db_init import init_db, db  
-from db.models import Question 
-import os  ,openai , psycopg2
-
+import os 
+import openai
+import os ,psycopg2 ,openai
+from db.db_init import init_db
 
 app = Flask(__name__)
-
 openai.api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI()
 
+init_db()
 
 @app.route("/")
 def hello_world():
