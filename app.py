@@ -30,9 +30,6 @@ def ask_question():
             messages=[{"role": "user", "content": question_text}]
         )
         answer_text = response.choices[0].message.content
-        new_question = Question(question=question_text, answer=answer_text)
-        db.session.add(new_question)
-        db.session.commit()
     except Exception as e:
         return jsonify({'error': str(e)}), 500
     
