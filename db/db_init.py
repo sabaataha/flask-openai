@@ -1,31 +1,10 @@
-import psycopg2
+import time
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import text
+from sqlalchemy.exc import OperationalError
 
-def init_db():
-    try:
-        conn = psycopg2.connect(
-            database="flask_db",
-            user="sabaataha",
-            host="localhost",
-            port="5432"
-        )
-        cur = conn.cursor()
+db = SQLAlchemy()
 
-        cur.execute('''
-            CREATE TABLE IF NOT EXISTS questions (
-                id SERIAL PRIMARY KEY,
-                question TEXT,
-                answer TEXT
-            );
-        ''')
-
-        conn.commit()
-        print("Initialized database schema.")
-
-    except psycopg2.Error as e:
-        print("Error initializing database schema:", e)
-
-    finally:
-        if cur:
-            cur.close()
-        if conn:
-            conn.close()
+def init_db(app):
+    with app.app_context():
+        db.create_all()
