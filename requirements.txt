@@ -2,8 +2,9 @@ Flask>=2.0.0
 Jinja2>=3.0.0
 MarkupSafe>=2.0.0
 SQLAlchemy
+python-dotenv
 flask_sqlalchemy
 psycopg2-binary
 alembic
 openai
-
+python-dotenv

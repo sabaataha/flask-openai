@@ -9,6 +9,8 @@ services:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend
       
   flask-app:
     build: .
@@ -17,13 +19,17 @@ services:
       DATABASE_PORT: ${DATABASE_PORT}
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USER: ${DATABASE_USER}
+      # DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       DB_URI: ${DB_URI}
       OPENAI_API_KEY:  ${OPENAI_API_KEY}
     ports:
        - "5001:5001"
     depends_on:
       - db
-
-
+    env_file: ".env"
+    networks:
+      - backend
+networks:
+  backend:
 volumes:
   postgres_data:

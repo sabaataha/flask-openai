@@ -8,4 +8,5 @@ def add_question(question_text, answer_text):
 
 def get_all_questions():
     questions = Question.query.all()
-    return [{'id': q.id, 'question': q.question, 'answer': q.answer} for q in questions]
+    questions_list = [{'id': q.id, 'question': q.question, 'answer': q.answer} for q in questions]
+    return questions_list

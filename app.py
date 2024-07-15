@@ -6,7 +6,7 @@ import os
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DB_URI")
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://username:1234@db:5432/flask_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
