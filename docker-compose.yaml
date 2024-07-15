@@ -3,6 +3,7 @@ version: '3.9'
 services:
   db:
     image: postgres:14
+    restart: always
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
@@ -20,11 +21,6 @@ services:
   flask-app:
     build: .
     environment:
-      DATABASE_HOST: ${DATABASE_HOST}
-      DATABASE_PORT: ${DATABASE_PORT}
-      DATABASE_NAME: ${DATABASE_NAME}
-      DATABASE_USER: ${DATABASE_USER}
-      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
       DB_URI: ${DB_URI}
       OPENAI_API_KEY:  ${OPENAI_API_KEY}
     ports:
