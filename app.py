@@ -1,13 +1,12 @@
 from flask import Flask, request, jsonify
 from db.db_init import init_db, db
-from services import handle_ask_question, fetch_questions
+from services.services import handle_ask_question, fetch_questions
+from flask_sqlalchemy import SQLAlchemy
+from config import Config 
 import os
 
 app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DB_URI")
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+app.config.from_object(Config)
 db.init_app(app)
 
 @app.route("/")
@@ -26,4 +25,4 @@ def get_questions():
     return jsonify(response), status
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0',port=5000, debug=True)
