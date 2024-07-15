@@ -2,13 +2,11 @@ from flask import Flask, request, jsonify
 from db.db_init import init_db, db
 from services.services import handle_ask_question, fetch_questions
 from flask_sqlalchemy import SQLAlchemy
+from config import Config 
 import os
 
 app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] =  os.getenv('DB_URI')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+app.config.from_object(Config)
 db.init_app(app)
 
 @app.route("/")
