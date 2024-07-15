@@ -6,19 +6,19 @@ services:
     environment:
       POSTGRES_DB: ${DATABASE_NAME}
       POSTGRES_USER: ${DATABASE_USER}
-      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
       
   flask-app:
     build: .
     environment:
-    DATABASE_HOST: ${DATABASE_HOST}
-    DATABASE_PORT: ${DATABASE_PORT}
-    DATABASE_NAME: ${DATABASE_NAME}
-    DATABASE_USER: ${DATABASE_USER}
-    DB_URI: ${DB_URI}
-    OPENAI_API_KEY:  ${OPENAI_API_KEY}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USER: ${DATABASE_USER}
+      DB_URI: ${DB_URI}
+      OPENAI_API_KEY:  ${OPENAI_API_KEY}
     ports:
        - "5001:5001"
     depends_on:

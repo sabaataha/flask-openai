@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from db.db_init import init_db, db
 from services import handle_ask_question, fetch_questions
+from flask_sqlalchemy import SQLAlchemy
 import os
 
 app = Flask(__name__)
