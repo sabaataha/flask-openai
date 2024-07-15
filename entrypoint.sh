@@ -11,4 +11,4 @@ wait_for_postgres
 
 alembic upgrade head
 
-flask run --host=0.0.0.0 --port=5001
+python app.py

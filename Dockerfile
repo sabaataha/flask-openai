@@ -6,7 +6,7 @@ RUN pip install  -r requirements.txt
 RUN apk update && apk add postgresql-client
 COPY ./entrypoint.sh /app
 RUN chmod +x entrypoint.sh
-EXPOSE 5001
+EXPOSE 5000
 ENTRYPOINT ["./entrypoint.sh"]
 
 
