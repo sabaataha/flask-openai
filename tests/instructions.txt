@@ -1,2 +1,6 @@
+
+# how to run tests 
+
 1. Make sure you have executed the command 'docker compose up --build'
-2. run ./run_tests.sh in your command line
+2. Make sure you are in tests folder
+3. run ./run_tests.sh in your command line
