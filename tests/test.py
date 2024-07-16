@@ -1,25 +1,20 @@
 import os
+from dotenv import load_dotenv
 import requests
 import pytest
 import time
 import json
 import psycopg2
 
-# Set environment variables according to your Docker Compose setup
-os.environ['HOST_URL'] = 'http://localhost:5001'  # Adjust as per your local Flask app port
-os.environ['DB_URI'] = 'postgresql+psycopg2://username:1234@localhost:5432/flask_db'  
-os.environ['DATABASE_HOST'] = 'localhost'
-os.environ['DATABASE_PORT'] = '5432'
-os.environ['DATABASE_NAME'] = 'flask_db'
-os.environ['DATABASE_USER'] = 'username'
-os.environ['DATABASE_PASSWORD'] = '1234'
+# Load environment variables from .env file
+load_dotenv()
 
 BASE_URL = os.getenv("HOST_URL")
 
 @pytest.fixture(scope="module", autouse=True)
 def wait_for_services():
     """Fixture to wait for services to be ready"""
-    max_retries = 5 
+    max_retries = 510
     retries = 0
     while retries < max_retries:
         try:
@@ -52,7 +47,7 @@ def test_health_check():
     assert response.status_code == 200
 
 def test_ask_question():
-    payload = {"question": "What is the answer?"}
+    payload = {"question": "What is AI?"}
     response = requests.post(f"{BASE_URL}/ask", json=payload)
     assert response.status_code == 200
     assert 'answer_text' in response.json()
@@ -61,8 +56,6 @@ def test_get_questions():
     response = requests.get(f"{BASE_URL}/questions")
     assert response.status_code == 200
     assert isinstance(response.json(), list)
-
-
 
 if __name__ == "__main__":
     pytest.main()
