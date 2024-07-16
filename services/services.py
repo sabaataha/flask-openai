@@ -1,6 +1,6 @@
 import openai
 import os
-from db.dal import add_question, get_all_questions
+from db.models import add_question, get_all_questions
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
