@@ -11,7 +11,7 @@ db.init_app(app)
 
 @app.route("/")
 def hello_world():
-    return "<p>This is an OpenAI powered app!</p>"
+    return "<p>This is an OpenAI powered app!</p>",200
 
 @app.route("/ask", methods=['POST'])
 def ask_question():
