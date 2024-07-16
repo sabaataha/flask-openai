@@ -6,7 +6,7 @@ import time
 import json
 import psycopg2
 
-# Load environment variables from .env file
+
 load_dotenv()
 
 BASE_URL = os.getenv("HOST_URL")
@@ -14,7 +14,7 @@ BASE_URL = os.getenv("HOST_URL")
 @pytest.fixture(scope="module", autouse=True)
 def wait_for_services():
     """Fixture to wait for services to be ready"""
-    max_retries = 510
+    max_retries = 5
     retries = 0
     while retries < max_retries:
         try:
